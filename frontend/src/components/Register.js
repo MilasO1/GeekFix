@@ -16,10 +16,10 @@ function Register() {
         password,
       });
       alert('Bien inscrit!');
-      console.log(response.data); // Handle registration success
+      console.log(response.data); 
     } catch (error) {
       console.error(error);
-      alert('Mauvaise infos'); // Handle registration failure
+      alert('Mauvaise infos'); 
     }
   };
 

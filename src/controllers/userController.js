@@ -53,25 +53,19 @@ exports.logout = async (req, res) => {
 exports.createUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    // Basic validation
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
-
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: "L'utilisateur existe dejà" });
     }
 
-    // Create and save the user
+   
     const newUser = new User({ name, email, password });
     await newUser.save();
 
-    res.status(201).json({ message: 'User created successfully', user: newUser });
+    res.status(201).json({ message: 'Utilisateur bien crée', user: newUser });
   } catch (error) {
     console.error('Error creating user:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Erreur lors de la création de utilisateur' });
   }
 };
 
